@@ -23,4 +23,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal # <-- this is the current bottom line
+    - name: Publish
+      run: dotnet publish net-angular-ci/net-angular-ci.csproj -c Release -o website
