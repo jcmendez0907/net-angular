@@ -26,3 +26,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal # <-- this is the current bottom line
     - name: Publish
       run: dotnet publish net-angular-ci/net-angular-ci.csproj -c Release -o website
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: website
+        path: net-angular-ci/website/**
+        if-no-files-found: error
