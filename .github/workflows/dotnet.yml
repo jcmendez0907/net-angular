@@ -24,3 +24,16 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dotnet-results-7
+        path: TestResults-7
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.4
+      with:
+        server: 40.121.36.214
+        username: ci-cd-admin
+        password: ${{ secrets.ftp_password }}
+        local-dir: ./TestResults-7/
+        port: 21
