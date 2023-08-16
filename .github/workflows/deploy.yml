@@ -1,0 +1,38 @@
+name: Deploy 🎯
+
+on:    
+  push:
+    branches:
+      - main
+  
+jobs:
+  Migration:
+    name: Deployment
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3    
+
+      # - name: Install EF Core tools
+      #   run: |
+      #     dotnet tool install --global dotnet-ef
+      #     dotnet tool restore
+
+      # - name: Migrate
+      #   run: dotnet ef database update --project ./NearShoreDevs.Erp.Persistence --startup-project ./NearShoreDevs.Erp.Web -c NSD_ERPContext --connection '${{ secrets.STAGGING_DB_CONNECTION_STRING }}'
+
+      - name: Download artifact
+        id: download-artifact
+        uses: actions/download-artifact@v3
+        with:
+          workflow: build.yml
+          name: .net-app
+          path: ${{ github.workspace }}/myapp    
+      
+      - name: FTP Upload
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: 40.121.36.214
+          username: ci-cd-admin
+          password: ${{ secrets.ftp_password }}
+          local-dir: ./myapp/
+          port: 21
