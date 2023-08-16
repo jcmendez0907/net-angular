@@ -30,7 +30,7 @@ jobs:
         name: dotnet-results-7
         path: TestResults-7
     - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.4
+      uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: 40.121.36.214
         username: ci-cd-admin
