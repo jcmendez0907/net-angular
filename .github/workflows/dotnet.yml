@@ -43,7 +43,7 @@ jobs:
       uses: SamKirkland/web-deploy@v1
       with:
         target-server: cruz.eastus.cloudapp.azure.com
-        remote-user: ci-cd-server
+        remote-user: ci-cd-admin
         private-ssh-key: ${{ secrets.ftp_password }}
         destination-path: C:/net-angular/
         source-path: ./publish/
