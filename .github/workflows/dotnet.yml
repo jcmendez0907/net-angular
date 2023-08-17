@@ -31,11 +31,18 @@ jobs:
       with:
         name: dotnet-results-7
         path: ./publish/
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+    - name: 📂 Sync Files
+      uses: SamKirkland/web-deploy@v1
       with:
-        server: 40.121.36.214
-        username: ci-cd-admin
-        password: ${{ secrets.ftp_password }}
-        local-dir: ./publish/
-        port: 21
+        target-server: cruz.eastus.cloudapp.azure.com
+        remote-user: ci-cd-server
+        private-ssh-key: ${{ secrets.ftp_password }}
+        destination-path: C:/net-angular/
+    # - name: 📂 Sync files
+    #   uses: SamKirkland/FTP-Deploy-Action@4.3.3
+    #   with:
+    #     server: 40.121.36.214
+    #     username: ci-cd-admin
+    #     password: ${{ secrets.ftp_password }}
+    #     local-dir: ./publish/
+    #     port: 21
