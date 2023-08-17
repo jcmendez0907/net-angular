@@ -44,7 +44,7 @@ jobs:
       with:
         target-server: cruz.eastus.cloudapp.azure.com
         remote-user: ci-cd-admin
-        private-ssh-key: ${{ secrets.ftp_password }}
+        private-ssh-key: ${{ secrets.FTP_PASSWORD }}
         destination-path: C:/net-angular/
         source-path: ./publish/
     # - name: 📂 Sync files
