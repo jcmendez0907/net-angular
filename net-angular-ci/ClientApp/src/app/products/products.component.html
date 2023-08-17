@@ -1,0 +1,23 @@
+<h1 id="tableLabel">Products list</h1>
+
+<p>Getting data from azure SQL database.</p>
+
+<p *ngIf="!products?.length"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="products.length">
+  <thead>
+    <tr>
+      <th>ProductID</th>
+      <th>ProductName</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of products">
+      <td>{{ item.ProductID }}</td>
+      <td>{{ item.ProductName }}</td>
+      <td>{{ item.Quantity }}</td>
+    </tr>
+  </tbody>
+</table>
+
